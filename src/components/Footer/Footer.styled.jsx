@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-export const HeaderWrapper = styled.div`
+export const FooterWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundSecond};
 `;
 
-export const StyledHeader = styled.header`
+export const StyledFooter = styled.footer`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   height: 68px;
 `;

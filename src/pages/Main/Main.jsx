@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import { Header } from 'components';
 import { Outlet } from 'react-router';
+import { Header, Container, Footer } from 'components';
 
 const Main = () => {
   return (
@@ -8,9 +8,12 @@ const Main = () => {
       <Header />
       <main>
         <Suspense fallback={<div>Loading...</div>}>
-          <Outlet />
+          <Container>
+            <Outlet />
+          </Container>
         </Suspense>
       </main>
+      <Footer />
     </>
   );
 };

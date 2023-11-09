@@ -1,4 +1,6 @@
+import { Section } from 'components';
+
 const Catalog = () => {
-  return <div>Catalog</div>;
+  return <Section>Catalog</Section>;
 };
 export default Catalog;

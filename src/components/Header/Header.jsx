@@ -1,10 +1,16 @@
-import { Navigation } from 'components';
+import { Navigation, Container } from 'components';
+import { StyledHeader, HeaderWrapper } from './Header.styled';
 
 const Header = () => {
   return (
-    <header>
-      <Navigation />
-    </header>
+    <HeaderWrapper>
+      <Container>
+        <StyledHeader>
+          <p>LOGO</p>
+          <Navigation />
+        </StyledHeader>
+      </Container>
+    </HeaderWrapper>
   );
 };
 export default Header;

@@ -51,8 +51,8 @@ export const GlobalStyles = css`
     font-family: 'Manrope', sans-serif;
     font-weight: 400;
     font-size: 14px;
-    color: ${theme.colors.black};
-    background-color: ${theme.colors.white};
+    color: ${theme.colors.textGrey_100};
+    background-color: ${theme.colors.backgroundMain};
   }
 
   // Fonts

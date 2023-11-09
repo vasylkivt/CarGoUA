@@ -9,13 +9,11 @@ const Navigation = () => {
 
   return (
     <Nav>
-      {headerNav.map(({ name, href }) => {
-        return (
-          <Link key={name + href} to={href}>
-            {name}
-          </Link>
-        );
-      })}
+      {headerNav.map(({ name, href }) => (
+        <Link key={name + href} to={href}>
+          {name}
+        </Link>
+      ))}
     </Nav>
   );
 };
