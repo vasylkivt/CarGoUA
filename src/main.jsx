@@ -3,28 +3,40 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import { Catalog, ErrorPage, Favorite, Home, Main } from 'pages';
-
+import { ErrorPage } from 'pages';
+import { SharedLayout } from 'components';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from './redux/store';
 import { GlobalStyles, theme } from './styles';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Main />,
+    element: <SharedLayout />,
     errorElement: <ErrorPage />,
 
     children: [
       {
         index: true,
-        element: <Home />,
+        async lazy() {
+          let { Home } = await import('pages');
+          return { Component: Home };
+        },
       },
       {
         path: 'catalog',
-        element: <Catalog />,
+        async lazy() {
+          let { Catalog } = await import('pages');
+          return { Component: Catalog };
+        },
       },
       {
         path: 'favorite',
-        element: <Favorite />,
+        async lazy() {
+          let { Favorite } = await import('pages');
+          return { Component: Favorite };
+        },
       },
     ],
   },
@@ -34,7 +46,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <Global styles={GlobalStyles} />
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <RouterProvider router={router} />
+        </PersistGate>
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>,
 );
