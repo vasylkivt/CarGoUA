@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { CarItem } from 'components';
 import { selectCars } from '../../redux/car/selectors';
+import { Item, List } from './CarList.styled';
 // import { useSearchParams } from 'react-router-dom';
 
 const CarList = () => {
@@ -9,13 +10,13 @@ const CarList = () => {
   // const [searchParams] = useSearchParams();
 
   return (
-    <ul>
+    <List>
       {cars.map(car => (
-        <li key={car.id}>
+        <Item key={car.id}>
           <CarItem car={car} />
-        </li>
+        </Item>
       ))}
-    </ul>
+    </List>
   );
 };
 export default CarList;
