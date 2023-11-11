@@ -3,7 +3,26 @@ import styled from '@emotion/styled';
 export const ImageWrapper = styled.div`
   position: relative;
   margin-bottom: 14px;
+  border-radius: 14px;
+  overflow: hidden;
+
+  ::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(18, 20, 23, 0.5) 2.5%,
+      rgba(18, 20, 23, 0) 41.07%
+    );
+  }
+
   img {
+    background: ${({ theme }) => theme.colors.backgroundImage};
     height: 202px;
     width: 100%;
     object-fit: cover;
@@ -76,6 +95,7 @@ export const CardInfo = styled.div`
 `;
 
 export const Button = styled.button`
+  margin-top: auto;
   padding-top: 12px;
   padding-bottom: 12px;
   background-color: ${({ theme }) => theme.colors.accent};

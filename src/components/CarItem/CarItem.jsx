@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-import { ImageWrapper, Title, CardInfo, Button } from './CarItem.styled';
-import defaultImg from '../../assets/car.svg';
-import HeartIcon from '../../assets/heart.svg?react';
+import { ModalWindow, CardModal } from 'components';
+import defaultImg from 'assets/icons/car.svg';
+import HeartIcon from 'assets/icons/heart.svg?react';
+import { Button, CardInfo, ImageWrapper, Title } from './CarItem.styled';
 
 const CarItem = ({ car }) => {
   const {
@@ -16,6 +18,8 @@ const CarItem = ({ car }) => {
     rentalCompany,
     accessories,
   } = car;
+
+  const [onShowModal, setOnShowModal] = useState(false);
 
   const handleImageError = event => {
     event.target.src = defaultImg;
@@ -47,7 +51,11 @@ const CarItem = ({ car }) => {
         <span>{accessories[0]}</span>
       </CardInfo>
 
-      <Button>Learn more</Button>
+      <Button onClick={() => setOnShowModal(true)}>Learn more</Button>
+
+      <ModalWindow onClose={() => setOnShowModal(false)} onShow={onShowModal}>
+        <CardModal car={car} />
+      </ModalWindow>
     </>
   );
 };

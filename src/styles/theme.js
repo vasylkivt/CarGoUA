@@ -13,6 +13,10 @@ export const theme = {
 
     backgroundMain: '#ffffff',
     backgroundSecond: '#F7F7FB',
-    backdrop: 'rgba(18, 20, 23, 0.50',
+    backgroundImage: '#F7F7FB',
+    backdrop: 'rgba(18, 20, 23, 0.50)',
+  },
+  boxShadow: {
+    shadowCard: '0px 0px 15px 0px #bbbbbb, inset 0px 0px 10px 0px #bbbbbb',
   },
 };

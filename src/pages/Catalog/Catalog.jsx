@@ -1,7 +1,7 @@
-import { Section, CarList } from 'components';
+import { Section, CarList, BtnLoadMore } from 'components';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchAllCars, fetchCarsByPage } from '../../redux/car/operations';
+import { fetchAllCars, fetchCarsByPage } from 'src/redux/car/operations';
 import { useSearchParams } from 'react-router-dom';
 
 const Catalog = () => {
@@ -28,9 +28,11 @@ const Catalog = () => {
 
   return (
     <Section>
-      <CarList limit={limit} setPage={setPage} />
+      <CarList />
       {showLoadMore && (
-        <button onClick={() => setPage(prev => prev + 1)}>Load More</button>
+        <BtnLoadMore onClick={() => setPage(prev => prev + 1)}>
+          Load More
+        </BtnLoadMore>
       )}
     </Section>
   );
