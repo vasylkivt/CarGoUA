@@ -11,7 +11,7 @@ export const ImageWrapper = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+
     height: 100%;
     width: 100%;
     background: linear-gradient(
@@ -35,13 +35,34 @@ export const ImageWrapper = styled.div`
       height: 268px;
     }
   }
+`;
+
+export const ButtonHeart = styled.button`
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  background-color: transparent;
+  top: 14px;
+  right: 14px;
+
+  transition: color 250ms ease-in-out;
+
+  :hover svg {
+    color: ${({ theme }) => theme.colors.accent};
+    scale: 1.2;
+  }
 
   svg {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    color: ${({ theme }) => theme.colors.accent};
-    fill: ${({ theme }) => theme.colors.accent};
+    transition:
+      scale 250ms ease-in-out,
+      color 250ms ease-in-out,
+      fill 250ms ease-in-out;
+
+    color: ${({ isOnFavoriteList, theme }) =>
+      isOnFavoriteList ? theme.colors.accent : theme.colors.textWhite};
+
+    fill: ${({ isOnFavoriteList, theme }) =>
+      isOnFavoriteList ? theme.colors.accent : 'transparent'};
   }
 `;
 

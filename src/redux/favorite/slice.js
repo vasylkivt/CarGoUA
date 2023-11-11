@@ -10,15 +10,15 @@ const favoriteSlice = createSlice({
   initialState,
 
   reducers: {
-    setFavorite(state, { payload }) {
+    addToFavorite(state, { payload }) {
       state.items.push(payload);
     },
-    deleteFavorite(state, { payload }) {
+    deleteFromFavorite(state, { payload }) {
       state.items = state.items.filter(({ id }) => id !== payload);
     },
   },
 });
 
-export const { setFavorite, deleteFavorite } = favoriteSlice.actions;
+export const { addToFavorite, deleteFromFavorite } = favoriteSlice.actions;
 
 export const favoriteReducer = favoriteSlice.reducer;

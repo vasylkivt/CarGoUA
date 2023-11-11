@@ -1,10 +1,19 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import { ModalWindow, CardModal } from 'components';
 import defaultImg from 'assets/icons/car.svg';
 import HeartIcon from 'assets/icons/heart.svg?react';
-import { Button, CardInfo, ImageWrapper, Title } from './CarItem.styled';
+import { CardModal, ModalWindow } from 'components';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFavorite } from 'src/redux/favorite/selectors';
+import { addToFavorite, deleteFromFavorite } from 'src/redux/favorite/slice';
+import {
+  Button,
+  ButtonHeart,
+  CardInfo,
+  ImageWrapper,
+  Title,
+} from './CarItem.styled';
 
 const CarItem = ({ car }) => {
   const {
@@ -20,6 +29,10 @@ const CarItem = ({ car }) => {
   } = car;
 
   const [onShowModal, setOnShowModal] = useState(false);
+  const dispatch = useDispatch();
+  const favoriteList = useSelector(selectFavorite);
+
+  const isOnFavoriteList = favoriteList.find(({ id }) => id === car.id);
 
   const handleImageError = event => {
     event.target.src = defaultImg;
@@ -27,11 +40,22 @@ const CarItem = ({ car }) => {
 
   const address = car.address.split(', ');
 
+  const handlerClick = () => {
+    if (isOnFavoriteList) {
+      dispatch(deleteFromFavorite(car.id));
+    } else {
+      dispatch(addToFavorite(car));
+    }
+  };
+
   return (
     <>
       <ImageWrapper>
         <img src={img} alt={make + ' ' + model} onError={handleImageError} />
-        <HeartIcon width={18} height={18} />
+
+        <ButtonHeart isOnFavoriteList={isOnFavoriteList} onClick={handlerClick}>
+          <HeartIcon width={18} height={18} />
+        </ButtonHeart>
       </ImageWrapper>
 
       <Title>
@@ -73,5 +97,6 @@ CarItem.propTypes = {
     rentalCompany: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
     accessories: PropTypes.arrayOf(PropTypes.string).isRequired,
+    id: PropTypes.string.isRequired,
   }),
 };
