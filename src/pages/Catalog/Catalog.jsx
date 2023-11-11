@@ -1,9 +1,12 @@
-import { Section, CarList, BtnLoadMore } from 'components';
+import { BtnLoadMore, CarList, Filters, Section } from 'components';
+
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { fetchAllCars, fetchCarsByPage } from 'src/redux/car/operations';
-import { useSearchParams } from 'react-router-dom';
 import { selectCars } from 'src/redux/car/selectors';
+import { filterCars } from '../../helpers/filterCars';
+import { selectFilter, selectIsFilters } from '../../redux/filter/selectors';
 
 const Catalog = () => {
   const [page, setPage] = useState(1);
@@ -12,39 +15,51 @@ const Catalog = () => {
   const [currentCarList, setCurrentCarList] = useState([]);
   const cars = useSelector(selectCars);
 
-  const [filters] = useSearchParams();
   const dispatch = useDispatch();
+  const isFilters = useSelector(selectIsFilters);
+  const filters = useSelector(selectFilter);
 
   useEffect(() => {
-    if (filters.size === 0) {
-      setCurrentCarList(cars);
-    } else {
-      setCurrentCarList(cars);
-      //!!
-    }
-  }, [cars, filters.size]);
+    dispatch(fetchCarsByPage({}));
+  }, [dispatch]);
 
   useEffect(() => {
-    if (filters.size === 0) {
-      dispatch(fetchCarsByPage({ page, limit })).then(({ payload }) => {
-        if (payload.length === 0 || payload.length < limit) {
-          setShowLoadMore(false);
-        }
-      });
-    } else {
-      dispatch(fetchAllCars());
-      setShowLoadMore(false);
-      setPage(1);
+    if (!isFilters) {
+      setCurrentCarList(cars);
     }
-  }, [dispatch, filters, limit, page]);
+  }, [cars, isFilters]);
+
+  const handleLoadMore = () => {
+    setPage(prev => {
+      dispatch(fetchCarsByPage({ page: page + 1, limit })).then(
+        ({ payload }) => {
+          if (payload.length === 0 || payload.length < limit) {
+            setShowLoadMore(false);
+          }
+        },
+      );
+      return prev + 1;
+    });
+  };
+
+  const handleSubmit = () => {
+    dispatch(fetchAllCars());
+    setShowLoadMore(false);
+    setPage(1);
+
+    if (isFilters) {
+      const filteredCarList = filterCars(cars, filters);
+      setCurrentCarList(filteredCarList);
+    }
+  };
 
   return (
     <Section>
+      <Filters handleSubmit={handleSubmit} />
+
       <CarList carList={currentCarList} />
       {showLoadMore && (
-        <BtnLoadMore onClick={() => setPage(prev => prev + 1)}>
-          Load More
-        </BtnLoadMore>
+        <BtnLoadMore onClick={handleLoadMore}>Load More</BtnLoadMore>
       )}
     </Section>
   );
