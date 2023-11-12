@@ -9,4 +9,5 @@ export const StyledFooter = styled.footer`
   justify-content: center;
   align-items: center;
   height: 68px;
+  gap: 50px;
 `;

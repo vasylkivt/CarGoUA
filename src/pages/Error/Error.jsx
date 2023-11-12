@@ -1,6 +1,6 @@
 import { Link, useRouteError } from 'react-router-dom';
 
-import { Section } from 'components';
+import { Section, Container } from 'components';
 
 const ErrorPage = () => {
   const error = useRouteError();
@@ -8,12 +8,14 @@ const ErrorPage = () => {
 
   return (
     <Section id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
-      </p>
-      <Link to="/">Go Home </Link>
+      <Container>
+        <h1>Oops!</h1>
+        <p>Sorry, an unexpected error has occurred.</p>
+        <p>
+          <i>{error.statusText || error.message}</i>
+        </p>
+        <Link to="/">Go Home </Link>
+      </Container>
     </Section>
   );
 };

@@ -1,4 +1,4 @@
-import { Navigation, Container } from 'components';
+import { Navigation, Container, Logotype } from 'components';
 import { StyledHeader, HeaderWrapper } from './Header.styled';
 
 const Header = () => {
@@ -6,7 +6,7 @@ const Header = () => {
     <HeaderWrapper>
       <Container>
         <StyledHeader>
-          <p>LOGO</p>
+          <Logotype />
           <Navigation />
         </StyledHeader>
       </Container>

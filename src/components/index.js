@@ -4,6 +4,7 @@ import CardModal from 'components/CardModal/CardModal';
 import Filters from 'components/Filters/Filters';
 import Footer from 'components/Footer/Footer';
 import Header from 'components/Header/Header';
+import Logotype from 'components/Logotype/Logotype';
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 import Navigation from 'components/Navigation/Navigation';
 import SharedLayout from 'components/SharedLayout';
@@ -21,6 +22,7 @@ export {
   Filters,
   Footer,
   Header,
+  Logotype,
   ModalWindow,
   Navigation,
   Section,

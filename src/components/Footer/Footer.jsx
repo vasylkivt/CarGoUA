@@ -1,12 +1,13 @@
 import { FooterWrapper, StyledFooter } from './Footer.styled';
-import { Container } from 'components';
+import { Container, Logotype } from 'components';
 
 const Footer = () => {
   return (
     <FooterWrapper>
       <Container>
         <StyledFooter>
-          <p>LOGO</p>
+          <Logotype />
+          2023 @ All rights reserved.
         </StyledFooter>
       </Container>
     </FooterWrapper>
