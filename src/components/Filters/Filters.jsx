@@ -125,7 +125,7 @@ const Filters = ({ handleSubmit }) => {
         }}
         type="button"
       >
-        Clear
+        Reset
       </Button>
       <Button onClick={handleSearch} type="button">
         Search
