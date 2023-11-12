@@ -7,6 +7,7 @@ import { fetchAllCars, fetchCarsByPage } from 'src/redux/car/operations';
 import { selectCars } from 'src/redux/car/selectors';
 import { filterCars } from '../../helpers/filterCars';
 import { selectFilter, selectIsFilters } from '../../redux/filter/selectors';
+import { NotificationNotFound } from './Catalog.styled';
 
 export const Catalog = () => {
   const [page, setPage] = useState(1);
@@ -73,7 +74,17 @@ export const Catalog = () => {
   return (
     <Section>
       <Filters handleSubmit={handleSubmit} />
-
+      {currentCarList.length === 0 && (
+        <>
+          <NotificationNotFound>
+            🚫 Apologies, we couldn&apos;t find any ads that match your
+            search...🥲
+          </NotificationNotFound>
+          <NotificationNotFound>
+            Please adjust the filter parameters and try again! 🔍
+          </NotificationNotFound>
+        </>
+      )}
       <CarList carList={currentCarList} />
       {showLoadMore && (
         <BtnLoadMore onClick={handleLoadMore}>Load More</BtnLoadMore>
