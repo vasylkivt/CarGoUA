@@ -55,17 +55,17 @@ const Catalog = () => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!isFilters) {
       return;
     }
 
-    dispatch(fetchAllCars());
+    const { payload } = await dispatch(fetchAllCars());
     setShowLoadMore(false);
     setPage(1);
 
     if (isFilters) {
-      const filteredCarList = filterCars(cars, filters);
+      const filteredCarList = filterCars(payload, filters);
       setCurrentCarList(filteredCarList);
     }
   };
