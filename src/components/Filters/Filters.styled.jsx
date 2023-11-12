@@ -21,7 +21,7 @@ export const InputWrapper = styled.div`
   width: 140px;
   height: 48px;
   padding: 14px 18px;
-  border: transparent;
+  border: 1px solid transparent;
 
   border-radius: ${({ inputType }) =>
     inputType === 'from' ? '14px 0px 0px 14px' : '0 14px 14px 0'};
