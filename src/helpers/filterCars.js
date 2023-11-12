@@ -1,9 +1,10 @@
-export const filterCars = (cars, filters) => {
-  const filteredCarList = cars.filter(({ make, rentalPrice /* mileage */ }) => {
+export const filterCars = (cars, { brand, price, mileageFrom, mileageTo }) => {
+  const filteredCarList = cars.filter(({ make, rentalPrice, mileage }) => {
     return (
-      make === filters.brand &&
-      (filters.price === 0 ||
-        parseFloat(rentalPrice.replace('$', '')) < filters.price)
+      (brand === '' || make === brand) &&
+      (price === 0 || parseFloat(rentalPrice.replace('$', '')) < price) &&
+      (mileageFrom === 0 || mileageFrom < mileage) &&
+      (mileageTo === 0 || mileageTo > mileage)
     );
   });
   return filteredCarList;

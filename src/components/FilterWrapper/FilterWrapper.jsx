@@ -20,6 +20,7 @@ const FilterWrapper = ({
   options,
   label,
   inputWidth,
+  formatterText,
 }) => {
   const [onShowDropdown, setOnShowDropdown] = useState(false);
   const [filterValue, setFilterValue] = useState('');
@@ -62,7 +63,11 @@ const FilterWrapper = ({
             isOpen={onShowDropdown}
             onClick={() => setOnShowDropdown(prev => !prev)}
           >
-            {filterValue ? filterValue : defaultValue}
+            {filterValue
+              ? formatterText
+                ? formatterText(filterValue)
+                : filterValue
+              : defaultValue}
             <DropdownArrow />
           </DropdownBtn>
         </InputWrapper>
@@ -97,4 +102,5 @@ FilterWrapper.propTypes = {
   options: PropTypes.array.isRequired,
   label: PropTypes.string.isRequired,
   inputWidth: PropTypes.string.isRequired,
+  formatterText: PropTypes.func,
 };
