@@ -2,7 +2,11 @@ import { Section } from 'components';
 import { useSelector } from 'react-redux';
 import { selectFavorite } from 'src/redux/favorite/selectors';
 import { CarList } from 'components';
-import { Link } from 'react-router-dom';
+import {
+  CatalogLink,
+  EmptyFavoritesMessage,
+  InstructionMessage,
+} from './Favorite.styled';
 
 const Favorite = () => {
   const favoriteList = useSelector(selectFavorite);
@@ -10,10 +14,16 @@ const Favorite = () => {
   return (
     <Section>
       {favoriteList.length === 0 ? (
-        <h2>
-          The favorites list is empty, go to the{' '}
-          <Link to="/catalog">catalog</Link> and add your preferences.
-        </h2>
+        <>
+          <EmptyFavoritesMessage>
+            The favorites list is empty
+          </EmptyFavoritesMessage>
+          <InstructionMessage>
+            Go to the
+            <CatalogLink to="/catalog"> Catalog</CatalogLink> page
+          </InstructionMessage>
+          <InstructionMessage>And add your preferences.</InstructionMessage>
+        </>
       ) : (
         <CarList carList={favoriteList} />
       )}
