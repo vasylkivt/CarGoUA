@@ -8,7 +8,7 @@ import {
   InstructionMessage,
 } from './Favorite.styled';
 
-const Favorite = () => {
+export const Favorite = () => {
   const favoriteList = useSelector(selectFavorite);
 
   return (
@@ -30,4 +30,3 @@ const Favorite = () => {
     </Section>
   );
 };
-export default Favorite;

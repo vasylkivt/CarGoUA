@@ -34,7 +34,7 @@ const Filters = ({ handleSubmit }) => {
   }, [filter]);
 
   const priseList = [];
-  for (let i = 10; i <= 200; i += 10) {
+  for (let i = 10; i <= 1000; i += 10) {
     priseList.push(i);
   }
 
@@ -88,7 +88,7 @@ const Filters = ({ handleSubmit }) => {
         defaultValue="To $"
         options={priseList}
         label={'Price/ 1 hour'}
-        inputWidth="125px"
+        inputWidth="140px"
         formatterText={formatTextPriseInput}
       />
       <div>

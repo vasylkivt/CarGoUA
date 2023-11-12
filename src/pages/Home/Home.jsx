@@ -2,7 +2,7 @@ import { Section } from 'components';
 import { Heading, List, ListItem, Paragraph, SubHeading } from './Home.styled';
 import { Link } from 'react-router-dom';
 
-const Home = () => {
+export const Home = () => {
   return (
     <Section>
       <Heading>Welcome to CarGoUA!</Heading>
@@ -51,4 +51,3 @@ const Home = () => {
     </Section>
   );
 };
-export default Home;

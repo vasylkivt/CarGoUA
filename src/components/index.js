@@ -12,6 +12,7 @@ import SharedLayout from 'components/SharedLayout';
 import { BtnLoadMore } from 'components/common/BtnLoadMore.styled';
 import { Container } from 'components/common/Container.styled';
 import { Section } from 'components/common/Section.styled';
+import { RotateLoaderWrap } from 'components/common/RotateLoaderWrap.styled';
 
 export {
   BtnLoadMore,
@@ -27,4 +28,5 @@ export {
   Navigation,
   Section,
   SharedLayout,
+  RotateLoaderWrap,
 };

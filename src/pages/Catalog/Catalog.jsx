@@ -8,7 +8,7 @@ import { selectCars } from 'src/redux/car/selectors';
 import { filterCars } from '../../helpers/filterCars';
 import { selectFilter, selectIsFilters } from '../../redux/filter/selectors';
 
-const Catalog = () => {
+export const Catalog = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(12);
   const [showLoadMore, setShowLoadMore] = useState(true);
@@ -81,4 +81,3 @@ const Catalog = () => {
     </Section>
   );
 };
-export default Catalog;
