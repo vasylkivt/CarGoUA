@@ -32,7 +32,7 @@ To run the application locally, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/vasylkivt/CarGoUA.git`
 2. Install dependencies: `npm install`
-3. Run the app: `npm start`
+3. Run the app: `npm run dev`
 4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ## Technologies Used
