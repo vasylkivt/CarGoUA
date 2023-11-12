@@ -30,6 +30,7 @@ const Catalog = () => {
   useEffect(() => {
     if (!isFilters) {
       setCurrentCarList(cars);
+      setIsFirstRender(false);
     } else {
       if (isFirstRender) {
         const filteredCarList = filterCars(cars, filters);

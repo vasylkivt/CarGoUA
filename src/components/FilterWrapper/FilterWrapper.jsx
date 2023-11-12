@@ -9,10 +9,18 @@ import {
   DropdownBtn,
   DropdownItem,
   DropdownList,
+  InputLabel,
+  InputWrapper,
   Wrapper,
 } from './FilterWrapper.styled';
 
-const FilterWrapper = ({ filterName, defaultValue, options }) => {
+const FilterWrapper = ({
+  filterName,
+  defaultValue,
+  options,
+  label,
+  inputWidth,
+}) => {
   const [onShowDropdown, setOnShowDropdown] = useState(false);
   const [filterValue, setFilterValue] = useState('');
   const dispatch = useDispatch();
@@ -47,13 +55,17 @@ const FilterWrapper = ({ filterName, defaultValue, options }) => {
   return (
     <>
       <Wrapper ref={dropdownRef}>
-        <DropdownBtn
-          isOpen={onShowDropdown}
-          onClick={() => setOnShowDropdown(prev => !prev)}
-        >
-          {filterValue ? filterValue : defaultValue}
-          <DropdownArrow />
-        </DropdownBtn>
+        <InputWrapper>
+          <InputLabel>{label}</InputLabel>
+          <DropdownBtn
+            inputWidth={inputWidth}
+            isOpen={onShowDropdown}
+            onClick={() => setOnShowDropdown(prev => !prev)}
+          >
+            {filterValue ? filterValue : defaultValue}
+            <DropdownArrow />
+          </DropdownBtn>
+        </InputWrapper>
 
         <CSSTransition
           in={onShowDropdown}
@@ -83,4 +95,6 @@ FilterWrapper.propTypes = {
   filterName: PropTypes.string.isRequired,
   defaultValue: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
+  label: PropTypes.string.isRequired,
+  inputWidth: PropTypes.string.isRequired,
 };
