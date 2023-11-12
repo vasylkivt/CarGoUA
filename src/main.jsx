@@ -1,9 +1,12 @@
 import { Global, ThemeProvider } from '@emotion/react';
-import React from 'react';
+// import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from 'react-router-dom';
 
-import { ErrorPage } from 'pages';
 import { SharedLayout } from 'components';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -14,7 +17,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <SharedLayout />,
-    errorElement: <ErrorPage />,
+    errorElement: <Navigate to="/" />,
 
     children: [
       {
@@ -43,14 +46,14 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Global styles={GlobalStyles} />
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <RouterProvider router={router} />
-        </PersistGate>
-      </Provider>
-    </ThemeProvider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <ThemeProvider theme={theme}>
+    <Global styles={GlobalStyles} />
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
+    </Provider>
+  </ThemeProvider>,
+  // </React.StrictMode>,
 );
