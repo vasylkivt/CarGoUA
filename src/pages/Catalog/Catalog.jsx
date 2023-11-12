@@ -8,6 +8,7 @@ import { selectCars } from 'src/redux/car/selectors';
 import { filterCars } from '../../helpers/filterCars';
 import { selectFilter, selectIsFilters } from '../../redux/filter/selectors';
 import { NotificationNotFound } from './Catalog.styled';
+import { selectIsLoading } from '../../redux/car/selectors';
 
 export const Catalog = () => {
   const [page, setPage] = useState(1);
@@ -15,6 +16,7 @@ export const Catalog = () => {
   const [showLoadMore, setShowLoadMore] = useState(true);
   const [currentCarList, setCurrentCarList] = useState([]);
   const [isFirstRender, setIsFirstRender] = useState(true);
+  const isLoading = useSelector(selectIsLoading);
 
   const cars = useSelector(selectCars);
 
@@ -74,7 +76,7 @@ export const Catalog = () => {
   return (
     <Section>
       <Filters handleSubmit={handleSubmit} />
-      {currentCarList.length === 0 && (
+      {currentCarList.length === 0 && !isLoading && (
         <>
           <NotificationNotFound>
             🚫 Apologies, we couldn&apos;t find any ads that match your
@@ -86,7 +88,7 @@ export const Catalog = () => {
         </>
       )}
       <CarList carList={currentCarList} />
-      {showLoadMore && (
+      {showLoadMore && !isLoading && (
         <BtnLoadMore onClick={handleLoadMore}>Load More</BtnLoadMore>
       )}
     </Section>
