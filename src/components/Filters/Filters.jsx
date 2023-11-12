@@ -61,7 +61,7 @@ const Filters = ({ handleSubmit }) => {
   };
 
   const handleSearch = () => {
-    if (+filter.mileageTo < +filter.mileageFrom) {
+    if (+filter.mileageTo < +filter.mileageFrom && +filter.mileageTo !== 0) {
       setErrorMessage('Enter a larger number than "From"');
       setShowErrorMessage(true);
       return;
