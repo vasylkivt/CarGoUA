@@ -56,6 +56,10 @@ const Catalog = () => {
   };
 
   const handleSubmit = () => {
+    if (!isFilters) {
+      return;
+    }
+
     dispatch(fetchAllCars());
     setShowLoadMore(false);
     setPage(1);

@@ -2,7 +2,13 @@ import brands from 'src/helpers/staticData/brands.json';
 import FilterWrapper from '../FilterWrapper/FilterWrapper';
 import { resetFilter, setFilter } from '../../redux/filter/slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, InputLabel, InputWrapper, Wrapper } from './Filters.styled';
+import {
+  Button,
+  ErrorMessage,
+  InputLabel,
+  InputWrapper,
+  Wrapper,
+} from './Filters.styled';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { selectFilter } from '../../redux/filter/selectors';
@@ -12,6 +18,8 @@ const Filters = ({ handleSubmit }) => {
     mileageFrom: '',
     mileageTo: '',
   });
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
 
   const filter = useSelector(selectFilter);
@@ -35,13 +43,35 @@ const Filters = ({ handleSubmit }) => {
   const handleChange = evt => {
     const { value, name } = evt.target;
 
+    if (value.length > 5) {
+      return;
+    }
+
     if (/^[0-9]*$/.test(value) || value === '') {
       setMileage(prev => ({
         ...prev,
         [name]: value,
       }));
       dispatch(setFilter({ [name]: value, isFilters: true }));
+      setShowErrorMessage(false);
+    } else {
+      setErrorMessage('Enter a  number');
+      setShowErrorMessage(true);
     }
+  };
+
+  const handleSearch = () => {
+    if (+filter.mileageTo < +filter.mileageFrom) {
+      setErrorMessage('Enter a larger number than "From"');
+      setShowErrorMessage(true);
+      return;
+    }
+    setShowErrorMessage(false);
+    handleSubmit();
+  };
+
+  const formatMileage = value => {
+    return value;
   };
 
   return (
@@ -63,27 +93,30 @@ const Filters = ({ handleSubmit }) => {
       />
       <div>
         <InputLabel>Сar mileage / km</InputLabel>
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', position: 'relative' }}>
           <InputWrapper inputType="from">
             <label htmlFor="mileageFrom">From</label>
             <input
+              autoComplete="off"
               type="text"
               name="mileageFrom"
               onChange={handleChange}
-              value={mileage.mileageFrom}
+              value={formatMileage(mileage.mileageFrom)}
               id="mileageFrom"
             />
           </InputWrapper>
           <InputWrapper inputType="to">
             <label htmlFor="mileageTo">To</label>
             <input
+              autoComplete="off"
               type="text"
               name="mileageTo"
               onChange={handleChange}
-              value={mileage.mileageTo}
+              value={formatMileage(mileage.mileageTo)}
               id="mileageTo"
             />
           </InputWrapper>
+          {showErrorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </div>
       </div>
       <Button
@@ -94,7 +127,7 @@ const Filters = ({ handleSubmit }) => {
       >
         Clear
       </Button>
-      <Button onClick={handleSubmit} type="button">
+      <Button onClick={handleSearch} type="button">
         Search
       </Button>
     </Wrapper>

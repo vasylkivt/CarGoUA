@@ -5,12 +5,12 @@ export const Section = styled.section`
   padding-bottom: 50px;
 
   @media screen and (min-width: 768px) {
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
   @media screen and (min-width: 1440px) {
-    padding-top: 150px;
-    padding-bottom: 150px;
+    padding-top: 120px;
+    padding-bottom: 120px;
   }
 `;

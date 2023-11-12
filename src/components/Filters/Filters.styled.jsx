@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 18px;
   align-items: flex-end;
   margin-bottom: 50px;
@@ -17,9 +18,9 @@ export const InputLabel = styled.p`
 export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 160px;
+  width: 140px;
   height: 48px;
-  padding: 14px 41px 14px 24px;
+  padding: 14px 18px;
   border: transparent;
 
   border-radius: ${({ inputType }) =>
@@ -33,6 +34,11 @@ export const InputWrapper = styled.div`
   font-weight: 500;
   line-height: 1.11;
 
+  @media screen and (min-width: 768px) {
+    width: 160px;
+    padding: 14px 24px;
+  }
+
   transition:
     color 150ms ease-in-out,
     border 150ms ease-in-out;
@@ -43,7 +49,8 @@ export const InputWrapper = styled.div`
   }
 
   & input {
-    padding-left: 10px;
+    width: 100%;
+    padding-left: 6px;
     border: none;
     outline: none;
     background-color: transparent;
@@ -51,6 +58,13 @@ export const InputWrapper = styled.div`
 
   label {
   }
+`;
+
+export const ErrorMessage = styled.span`
+  position: absolute;
+  right: 5px;
+  bottom: -17px;
+  color: red;
 `;
 
 export const Button = styled.button`
