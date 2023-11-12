@@ -68,7 +68,7 @@ export const ButtonHeart = styled.button`
 
 export const Title = styled.h2`
   display: flex;
-  gap: 6px;
+  gap: 3px;
   margin-bottom: 8px;
 
   color: ${({ theme }) => theme.colors.textGrey_100};
@@ -93,13 +93,12 @@ export const Title = styled.h2`
 export const CardInfo = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  column-gap: 12px;
   margin-bottom: 28px;
 
   & span {
     position: relative;
     color: ${({ theme }) => theme.colors.textGrey_50};
-    font-family: Manrope;
     font-size: 12px;
     line-height: 1.5;
 

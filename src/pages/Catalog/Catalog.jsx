@@ -13,6 +13,8 @@ const Catalog = () => {
   const [limit] = useState(12);
   const [showLoadMore, setShowLoadMore] = useState(true);
   const [currentCarList, setCurrentCarList] = useState([]);
+  const [isFirstRender, setIsFirstRender] = useState(true);
+
   const cars = useSelector(selectCars);
 
   const dispatch = useDispatch();
@@ -20,14 +22,24 @@ const Catalog = () => {
   const filters = useSelector(selectFilter);
 
   useEffect(() => {
-    dispatch(fetchCarsByPage({}));
-  }, [dispatch]);
+    if (cars.length === 0) {
+      dispatch(fetchCarsByPage({}));
+    }
+  }, [cars.length, dispatch]);
 
   useEffect(() => {
     if (!isFilters) {
       setCurrentCarList(cars);
+    } else {
+      if (isFirstRender) {
+        const filteredCarList = filterCars(cars, filters);
+        setCurrentCarList(filteredCarList);
+        setShowLoadMore(false);
+        setPage(1);
+        setIsFirstRender(false);
+      }
     }
-  }, [cars, isFilters]);
+  }, [cars, filters, isFilters, isFirstRender]);
 
   const handleLoadMore = () => {
     setPage(prev => {
