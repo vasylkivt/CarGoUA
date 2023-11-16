@@ -1,6 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e114a8aa-a9f6-4085-a931-9612e8e718a8/deploy-status)](https://app.netlify.com/sites/taupe-faun-99c9f8/deploys)
 
-# CarGoUA App
+#  CarGoUA App
 
 This is a React application for a car rental company operating in Ukraine. Users can explore information about the company's services, browse a catalog of available cars, and view favorite listings. The app also allows users to filter cars based on make, hourly rental price, and mileage range.
 
