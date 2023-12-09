@@ -8,7 +8,14 @@ import { selectIsLoading } from '../redux/car/selectors';
 const Main = () => {
   const isLoading = useSelector(selectIsLoading);
   return (
-    <>
+    <div
+      style={{
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}
+    >
       <Header />
       <BarLoader
         loading={isLoading}
@@ -32,7 +39,7 @@ const Main = () => {
         </Suspense>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 export default Main;

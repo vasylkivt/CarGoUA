@@ -2,6 +2,8 @@
 
 #  CarGoUA App
 
+![CarGoUA Screenshot](./assets/CarGoUA.webp)
+
 This is a React application for a car rental company operating in Ukraine. Users can explore information about the company's services, browse a catalog of available cars, and view favorite listings. The app also allows users to filter cars based on make, hourly rental price, and mileage range.
 
 ## Table of Contents
